@@ -12,7 +12,7 @@ using UnityEditor;
 public class MenuManager : MonoBehaviour
 {
 
-               
+   public MainManager mainManager;  
    public void StartNew()
     {
         SceneManager.LoadScene(1);
@@ -27,6 +27,10 @@ public class MenuManager : MonoBehaviour
     #endif
 }
 
-
+public void ResetHighScore()
+    {
+        PlayerPrefs.SetInt("SavedHighScore", 0);
+        PlayerPrefs.SetString("HighScoreName", "No Saved Score");
+    }
   }
 
