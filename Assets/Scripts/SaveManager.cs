@@ -1,20 +1,32 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SaveManager : MonoBehaviour
 {
- 
-public static SaveManager Instance;
 
-private void Awake()
+    [SerializeField] private TMP_InputField nameInputField;
+    private const string PlayerNameKey = "PlayerName";
+
+    private void Start()
     {
-        if (Instance != null)
+        if (PlayerPrefs.HasKey(PlayerNameKey))
         {
-            Destroy(gameObject);
-            return;
+            string savedName = PlayerPrefs.GetString(PlayerNameKey);
+            nameInputField.text = savedName;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
+ 
+ public void SaveName()
+    {
+        string playerName = nameInputField.text.Trim();
 
+        if (!string.IsNullOrEmpty(playerName))
+        {   
+            PlayerPrefs.SetString(PlayerNameKey, playerName);
+            PlayerPrefs.Save(); 
+            Debug.Log("Name saved: " + playerName);
+        }
+    }
 }

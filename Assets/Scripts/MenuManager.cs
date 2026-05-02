@@ -1,22 +1,18 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using JetBrains.Annotations;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public class MenuManager : MonoBehaviour
 {
- private string inputName;
-  
-    
 
-    public void ReadStringInput(string s)
-    {
-        inputName = s;
-        Debug.Log(inputName);
-    }
-
+               
    public void StartNew()
     {
         SceneManager.LoadScene(1);
